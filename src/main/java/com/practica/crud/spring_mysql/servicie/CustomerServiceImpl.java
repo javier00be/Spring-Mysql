@@ -1,6 +1,7 @@
 package com.practica.crud.spring_mysql.servicie;
 
 import com.practica.crud.spring_mysql.entity.Customer;
+import com.practica.crud.spring_mysql.exception.ResourceNotFoundException;
 import com.practica.crud.spring_mysql.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +30,13 @@ public class CustomerServiceImpl implements CustomerService{
 
     @Override
     public Customer findById(Integer id) {
-
-        return customerRepository.findById(id).get();
+        Customer customer = customerRepository.findById(id).orElseThrow(
+                () -> {
+                    throw new ResourceNotFoundException("Customer con id: "+id+" no se encuentra");
+                }
+        );
+        //return customerRepository.findById(id).get();
+        return customer;
     }
 
     @Override

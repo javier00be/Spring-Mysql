@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+//http://localhost:8080/api/customer
+@RequestMapping("/api/customer")
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -31,6 +33,7 @@ public class CustomerController {
     public Customer findById(@PathVariable Integer id){
         return customerService.findById(id);
     }
+
     @DeleteMapping("/eliminar/{id}")
     public void delete(@PathVariable Integer id){
         customerService.deleteById(id);
