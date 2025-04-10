@@ -19,7 +19,7 @@ public class CustomerController {
     }
 
     //localhost:8080/create
-    @PostMapping("/create")
+    @PostMapping("/crear")
     public Customer save(@RequestBody Customer customer){
         return customerService.save(customer);
     }
