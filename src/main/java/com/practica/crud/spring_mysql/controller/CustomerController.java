@@ -2,6 +2,8 @@ package com.practica.crud.spring_mysql.controller;
 
 import com.practica.crud.spring_mysql.entity.Customer;
 import com.practica.crud.spring_mysql.servicie.CustomerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
 @RequestMapping("/api/customer")
 public class CustomerController {
 
+    private static final Logger log = LoggerFactory.getLogger(CustomerController.class);
     private final CustomerService customerService;
 
 
@@ -20,8 +23,17 @@ public class CustomerController {
     }
 
     //localhost:8080/create
+//localhost:8080/create
+//localhost:8080/create
     @PostMapping("/crear")
-    public Customer save(@RequestBody Customer customer){
+    public Customer save(@RequestBody Customer customer) {
+        System.out.println("Cliente recibido:");
+        System.out.println("ID: " + customer.getId());
+        System.out.println("Nombre: " + customer.getFirstName());
+        System.out.println("Apellido: " + customer.getLastName());
+        System.out.println("Email: " + customer.getEmail());
+        // Otra opción es sobreescribir el método toString() en tu clase Customer
+
         return customerService.save(customer);
     }
 
